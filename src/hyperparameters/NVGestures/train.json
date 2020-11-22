@@ -1,0 +1,38 @@
+{
+    "name": "Gesture Recognition",
+    "dataset": "NVGestures",
+    "epochs": 100,
+    "phase": "train",
+    "data": {
+      "optical_flow": false,
+      "type": "depth",
+      "n_classes": 25,
+      "n_frames": 40,
+      "data_path": "path/to/NVGestures",
+      "result_dir": "./result",
+      "batch_size": 8
+    },
+    "checkpoints": {
+      "save_policy": "best",
+      "save_name": "train_nv",
+      "save_dir": "./checkpoints/",
+      "save_iters": 30,
+      "tb_path": "train_log"
+    },
+    "solver": {
+      "type": "AdamW",
+      "workers": 4,
+      "weight_decay": 0.0001,
+      "base_lr": 0.0001,
+      "decay_steps": [50, 75]
+    },
+    "network":{
+      "backbone": "resnet",
+      "pretrained": true,
+      "ff_size": 1024,
+      "n_head": 8,
+      "dropout2d" : 0.1,
+      "dropout1d": 0.5,
+      "n_module": 6
+    }
+}
