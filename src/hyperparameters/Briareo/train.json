@@ -32,6 +32,7 @@
       "ff_size": 1024,
       "n_head": 6,
       "dropout2d" : 0.1,
-      "dropout1d": 0.5
+      "dropout1d": 0.5,
+      "n_module": 6
     }
 }
