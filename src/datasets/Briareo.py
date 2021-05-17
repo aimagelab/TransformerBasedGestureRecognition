@@ -87,7 +87,7 @@ class Briareo(Dataset):
                     if self.data_type in ["normal", "normals"]:
                         img *= 1000
                 else:
-                    img = cv2.imread(str(self.dataset_path / p), 0)
+                    img = cv2.imread(str(self.dataset_path / p))
                 img = cv2.resize(img, (224, 224))
                 if self.data_type != "rgb":
                     img = np.expand_dims(img, axis=2)
@@ -96,6 +96,7 @@ class Briareo(Dataset):
         clip = np.array(clip).transpose(1, 2, 3, 0)
 
         if self.data_type in ["normal", "normals"]:
+            self.dataset_path / p
             clip = normals_multi(clip)
         else:
             if self.optical_flow:
