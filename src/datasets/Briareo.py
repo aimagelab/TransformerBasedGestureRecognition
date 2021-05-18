@@ -96,7 +96,6 @@ class Briareo(Dataset):
         clip = np.array(clip).transpose(1, 2, 3, 0)
 
         if self.data_type in ["normal", "normals"]:
-            self.dataset_path / p
             clip = normals_multi(clip)
         else:
             if self.optical_flow:
