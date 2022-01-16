@@ -70,10 +70,10 @@ class GestureTest(object):
     def init_model(self):
         """Initialize model and other data for procedure"""
 
-        if self.data_type in ["depth", "ir"]:
-            self.in_planes = 1
-        elif self.data_type in ["flow", "optical_flow"]:
+        if self.optical_flow is True:
             self.in_planes = 2
+        elif self.data_type in ["depth", "ir"]:
+            self.in_planes = 1
         else:
             self.in_planes = 3
 
