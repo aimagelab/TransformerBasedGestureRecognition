@@ -86,8 +86,10 @@ class Briareo(Dataset):
                     img = np.load(str(self.dataset_path / p), allow_pickle=True)['arr_0']
                     if self.data_type in ["normal", "normals"]:
                         img *= 1000
+                elif self.data_type in ["ir"]:
+                    img = cv2.imread(str(self.dataset_path / p), cv2.IMREAD_ANYDEPTH)
                 else:
-                    img = cv2.imread(str(self.dataset_path / p))
+                    img = cv2.imread(str(self.dataset_path / p), cv2.IMREAD_COLOR)
                 img = cv2.resize(img, (224, 224))
                 if self.data_type != "rgb":
                     img = np.expand_dims(img, axis=2)
