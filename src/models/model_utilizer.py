@@ -113,8 +113,11 @@ class ModuleUtilizer(object):
         epoch = 0
         optimizer = None
         if self.configer.get('resume') is not None:
+            print('Restoring checkpoint: ', self.configer.get('resume'))
             checkpoint_dict = torch.load(self.configer.get('resume'))
-            # net.load_state_dict(checkpoint_dict['state_dict'], strict=False)
+            # Remove "module." from DataParallel, if present
+            checkpoint_dict['state_dict'] = {k[len('module.'):] if k.startswith('module.') else k: v for k, v in
+                                             checkpoint_dict['state_dict'].items()}
             net.load_state_dict(checkpoint_dict['state_dict'])
             iters = checkpoint_dict['iter'] if 'iter' in checkpoint_dict else 0
             optimizer = checkpoint_dict['optimizer'] if 'optimizer' in checkpoint_dict else None
